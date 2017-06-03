@@ -1,18 +1,18 @@
 org 0000h           ;organiza o offset
 
-push cs             ;CS = endereço do programa atual
+push cs             ;CS = endereÃ§o do programa atual
 pop ds              ;DS = CS
 call clearscreen    ;chama procedure de limpar a tela
-lea si, Mensagem    ;SI = endereço da mensagem
+lea si, Mensagem    ;SI = endereÃ§o da mensagem
 mov ah, 0Eh         ;subfuncao para imprimir caractere
 
 repeticao:  
 
  mov al, [si]          ;move para AL o caractere em SI
  cmp al, 0h            ;compara com 0 ( fim da string )
- jz terminou           ;caso terminou, pule para ‘terminou’
- int 10h               ;interrupção de video
- inc si                ;próximo caractere
+ jz terminou           ;caso terminou, pule para â€˜terminouâ€™
+ int 10h               ;interrupÃ§Ã£o de video
+ inc si                ;prÃ³ximo caractere
  jmp repeticao         ;repete o processo ate achar o 0
 
 terminou: 
@@ -23,18 +23,18 @@ repeticao2:
  
  mov al, [si]          ;move para AL o caractere em SI
  cmp al, 0h            ;compara com 0 ( fim da string )
- jz continuacao        ;caso terminou, pule para ‘terminou’
- int 10h               ;interrupção de video
- inc si                ;próximo caractere
+ jz continuacao        ;caso terminou, pule para â€˜terminouâ€™
+ int 10h               ;interrupÃ§Ã£o de video
+ inc si                ;prÃ³ximo caractere
  jmp repeticao2
 
 continuacao:
 
 mov ah, 0h             ;subfuncao de aguardar tecla
-int 16h                 ;interrupção de teclado
-mov ax, 0040h           ;método de reboot consiste em setar_
-mov ds, ax              ;o valor do endereço 0040:0072h_
-mov w.[0072h], 1234h    ;para 1234h e pular para o endereço_
+int 16h                 ;interrupÃ§Ã£o de teclado
+mov ax, 0040h           ;mÃ©todo de reboot consiste em setar_
+mov ds, ax              ;o valor do endereÃ§o 0040:0072h_
+mov w.[0072h], 1234h    ;para 1234h e pular para o endereÃ§o_
 jmp 0FFFFh:0000h        ;FFFF:0000h
 clearscreen proc        ;procedure de limpar a tela
  pusha                  ;coloca todos os reg na pilha
@@ -45,9 +45,9 @@ clearscreen proc        ;procedure de limpar a tela
  mov cl, 0              ;coluna do canto sup. esq.
  mov dh, 19h            ;linha do canto inf. dir. ( 25 )
  mov dl, 50h            ;coluna do canto inf. dir. ( 80 )
- int 10h                ;interrupção de vídeo
- popa                   ;repõe os valores dos registradores
- ret                    ;retorna para o código
+ int 10h                ;interrupÃ§Ã£o de vÃ­deo
+ popa                   ;repÃµe os valores dos registradores
+ ret                    ;retorna para o cÃ³digo
 clearscreen endp
-Mensagem db '=====Pirocao 30cm=====',13,10,13,10,0 ;nossa string que vai ser exibida
+Mensagem db '=====S.O de Pobre=====',13,10,13,10,0 ;nossa string que vai ser exibida
 Mensagem2 db '|| 1 - Hora  || 2 - Nao sei ||',0 ;segunda string  
