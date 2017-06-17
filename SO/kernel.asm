@@ -1,38 +1,7 @@
 name "kernel"
-; this is a very basic example
-; of a tiny operating system.
-;
-; this is kernel module!
-;
-; it is assumed that this machine
-; code is loaded by 'micro-os_loader.asm'
-; from floppy drive from:
-;   cylinder: 0
-;   sector: 2
-;   head: 0
-
-
-;=================================================
-; how to test micro-operating system:
-;   1. compile micro-os_loader.asm
-;   2. compile micro-os_kernel.asm
-;   3. compile writebin.asm
-;   4. insert empty floppy disk to drive a:
-;   5. from command prompt type:
-;        writebin loader.bin
-;        writebin kernel.bin /k
-;=================================================
-
-; directive to create bin file:
-#make_bin#
-
-; where to load? (for emulator. all these values are saved into .binf file)
 #load_segment=0800#
 #load_offset=0000#
 
-; these values are set to registers on load, actually only ds, es, cs, ip, ss, sp are
-; important. these values are used for the emulator to emulate real microprocessor state
-; after micro-os_loader transfers control to this kernel (as expected).
 #al=0b#
 #ah=00#
 #bh=00#
@@ -51,10 +20,6 @@ name "kernel"
 #ss=07c0#
 #sp=03fe#
 
-
-
-; this macro prints a char in al and advances
-; the current cursor position:
 putc    macro   char
 push    ax
 mov     al, char
@@ -102,19 +67,10 @@ skip_dcl:
 endm
 
 
-
-; kernel is loaded at 0800:0000 by micro-os_loader
 org 0000h
 
-; skip the data and function delaration section:
+
 jmp start
-; The first byte of this jump instruction is 0E9h
-; It is used by to determine if we had a sucessful launch or not.
-; The loader prints out an error message if kernel not found.
-; The kernel prints out "F" if it is written to sector 1 instead of sector 2.
-
-
-
 
 ;==== data section =====================
 
