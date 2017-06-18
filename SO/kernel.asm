@@ -585,7 +585,7 @@ BONUS proc
     db "     @   @",0dh,0ah,0ah,"   @             @           @            @                    @",0dh,0ah,0ah
     db " @             @          @                       @",0dh,0ah,0ah
     db "==========================================================================", 0dh,0ah, 0ah
-    db "Precione qualquer tecla para comecar!",0
+    db "Pressione qualquer tecla para comecar!",0
     
     ; ------ code section ------
     
@@ -879,7 +879,7 @@ HORA proc
     mov al,se2
     int 10h
     jmp mp
-    msghora1    db  0Dh,0Ah,"precione qualquer tecla...",0Dh,0Ah,0
+    msghora1    db  0Dh,0Ah,"pressione qualquer tecla...",0Dh,0Ah,0
     mp:
     lea si,msghora1
     call print_string
@@ -899,7 +899,7 @@ CALCULADORA proc
     msg2 db "Escolha o operador:    +  -  *  /     : ",0
     msg3 db "Entre com o segundo numero (-100 ate 100): ",0
     msg4 db  0dh,0ah , 'O resultado e : ',0 
-    msg5 db  0dh,0ah ,'precione qualquer tecla para voltar ao S.O ...', 0Dh,0Ah,0
+    msg5 db  0dh,0ah ,'pressione qualquer tecla para voltar ao S.O ...', 0Dh,0Ah,0
     err1 db  "Operador errado!", 0Dh,0Ah , 0
     smth db  " mais alguma coisa.... ",0
     ten  DW  10      
@@ -1316,7 +1316,7 @@ FATORIAL proc
     
     
     fatorialresult dw ?
-    fatorialmsg5 db  0dh,0ah ,'precione qualquer tecla para voltar ao S.O ...', 0Dh,0Ah,0     
+    fatorialmsg5 db  0dh,0ah ,'pressione qualquer tecla para voltar ao S.O ...', 0Dh,0Ah,0     
     
     
     fatorialstart:
